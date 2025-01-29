@@ -136,7 +136,7 @@ public:
 
 private:
 	page_id_t next_page_id_ {INVALID_PAGE_ID};
-	LeafNode node_array_[0];
+	LeafNode node_array_[];
 };
 
 static_assert(sizeof(BtreeLeafPage) == LEAF_PAGE_HEADER_SIZE);

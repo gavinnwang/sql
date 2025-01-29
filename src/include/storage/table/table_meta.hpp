@@ -1,8 +1,8 @@
 #pragma once
-#include "meta/schema.hpp"
 #include "common/config.hpp"
 #include "common/logger.hpp"
 #include "common/typedef.hpp"
+#include "meta/schema.hpp"
 #include "storage/page_allocator.hpp"
 #include "storage/serializer/serializer.hpp"
 
@@ -84,7 +84,9 @@ struct TableMeta {
 	// effectively the end of the linked list
 	// thus invariant: last_table_data_page_id_ >= last_table_heap_data_page_id_ && last_index_data_page_id_ <=
 	// last_index_heap_data_page_id_
+	// this also include index data
 	page_id_t last_table_data_page_id_ {INVALID_PAGE_ID};
+	// this only include table heap (tuple) data
 	// the last page id of the table heap file
 	// effectively the end of the table heap
 	page_id_t last_table_heap_data_page_id_ {INVALID_PAGE_ID};

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "storage/buffer/buffer_pool.hpp"
 #include "common/config.hpp"
 #include "common/logger.hpp"
 #include "common/typedef.hpp"
 #include "index/index.hpp"
+#include "storage/buffer/buffer_pool.hpp"
 #include "storage/page/btree_page.hpp"
 
 #include <algorithm>
@@ -146,7 +146,7 @@ private:
 	static_assert(std::is_trivially_copyable_v<IndexKeyType>);
 	static_assert(std::is_trivially_copyable_v<InternalValueType>);
 
-	InternalNode node_array_[0];
+	InternalNode node_array_[];
 };
 static_assert(sizeof(BtreeInternalPage) == INTERNAL_PAGE_HEADER_SIZE);
 } // namespace db

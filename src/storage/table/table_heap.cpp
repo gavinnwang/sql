@@ -1,9 +1,9 @@
 
 #include "storage/table/table_heap.hpp"
 
-#include "storage/buffer/buffer_pool.hpp"
 #include "common/logger.hpp"
 #include "common/page_id.hpp"
+#include "storage/buffer/buffer_pool.hpp"
 #include "storage/page/table_page.hpp"
 #include "storage/table/table_iterator.hpp"
 #include "storage/table/table_meta.hpp"
@@ -15,7 +15,7 @@ TableHeap::TableHeap(BufferPool &bpm, TableMeta &table_meta) : bpm_(bpm), table_
 	if (table_meta_.GetLastTableHeapDataPageId() == INVALID_PAGE_ID) {
 		PageId new_page_id {table_meta_.table_oid_};
 		auto guard = bpm.NewPageGuarded(*this, new_page_id);
-		assert(new_page_id.page_number_ != INVALID_PAGE_ID && new_page_id.page_number_ >= 0 && 
+		assert(new_page_id.page_number_ != INVALID_PAGE_ID && new_page_id.page_number_ >= 0 &&
 		       "table heap create page failed");
 
 		auto &first_page = guard.AsMut<TablePage>();
